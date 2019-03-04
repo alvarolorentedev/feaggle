@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2019-present, Kevin Mas Ruiz
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 package io.feaggle.specs;
 
 import io.feaggle.DriverLoader;
@@ -5,7 +11,6 @@ import io.feaggle.Feaggle;
 import io.feaggle.infrastructure.Unit;
 import io.feaggle.specs.cohort.TestCohort;
 import io.feaggle.toggle.OperationalToggle;
-import io.feaggle.toggle.ReleaseToggle;
 import io.feaggle.toggle.experiment.ExperimentDriver;
 import io.feaggle.toggle.operational.OperationalDriver;
 import io.feaggle.toggle.operational.Rule;
@@ -14,7 +19,6 @@ import io.feaggle.toggle.operational.sensor.Disk;
 import io.feaggle.toggle.operational.sensor.Healthcheck;
 import io.feaggle.toggle.operational.sensor.Memory;
 import io.feaggle.toggle.release.ReleaseDriver;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
