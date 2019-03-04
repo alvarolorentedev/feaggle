@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Singular;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 @Builder
 public class OperationalDriver {
@@ -13,11 +15,20 @@ public class OperationalDriver {
     public final List<Rule> rules;
 
     public final boolean isOperational(String toggle) {
-        return rules.stream().filter(rule -> rule.toggle.equals(toggle))
+        Optional<Rule> maybeRule = rules
+                .stream()
+                .filter(rule -> rule.toggle.equals(toggle))
                 .filter(rule -> rule.enabled)
+                .findFirst();
+
+        if (!maybeRule.isPresent()) {
+            return false;
+        }
+
+        return maybeRule.filter(expectedRule -> Stream.of(expectedRule)
                 .flatMap(rule -> rule.sensors.stream())
                 .map(Sensor::evaluate)
-                .reduce(true, (a, b) -> a && b);
+                .reduce(true, (a, b) -> a && b)).isPresent();
     }
 
     static {

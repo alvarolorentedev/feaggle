@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Singular;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 @Builder
 public class ExperimentDriver<Cohort extends ExperimentCohort> {
@@ -11,10 +13,14 @@ public class ExperimentDriver<Cohort extends ExperimentCohort> {
     private final List<Experiment<Cohort>> experiments;
 
     public boolean isEnabledForCohort(String experimentName, Cohort cohort) {
-        return experiments.stream().filter(experiment -> experiment.toggle.equals(experimentName))
-                .filter(experiment -> experiment.enabled)
+        Optional<Experiment<Cohort>> maybeExperiment = experiments.stream()
+                .filter(exp -> exp.toggle.equals(experimentName))
+                .filter(exp -> exp.enabled)
+                .findFirst();
+
+        return maybeExperiment.filter(cohortExperiment -> Stream.of(cohortExperiment)
                 .flatMap(experiment -> experiment.segments.stream())
-                .map(segment -> segment.evaluate(cohort))
-                .reduce(true, (a, b) -> a && b);
+                .allMatch(segment -> segment.evaluate(cohort))).isPresent();
+
     }
 }
