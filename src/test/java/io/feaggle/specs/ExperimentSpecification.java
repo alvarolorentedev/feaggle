@@ -20,6 +20,17 @@ public class ExperimentSpecification {
     private static final TestCohort COHORT = new TestCohort(IDENTIFIER);
 
     @Test
+    public void shouldRetrieveTheToggleName() {
+        ExperimentToggle<TestCohort> experiment = toggleFor(Experiment.<TestCohort>builder()
+                .toggle(EXPERIMENT_NAME)
+                .enabled(false)
+                .build()
+        );
+
+        assertEquals(EXPERIMENT_NAME, experiment.identifier());
+    }
+
+    @Test
     public void shouldNotHitWhenDisabled() {
         ExperimentToggle<TestCohort> experiment = toggleFor(Experiment.<TestCohort>builder()
                 .toggle(EXPERIMENT_NAME)
