@@ -56,7 +56,7 @@ public class ExperimentSpecification {
     public void rollOutShouldDistributeEvenLoad() {
         ExperimentToggle<TestCohort> experiment = toggleFor(Experiment.<TestCohort>builder()
                 .toggle(EXPERIMENT_NAME)
-                .segment(Rollout.<TestCohort>builder().percentage(25).build())
+                .segment(Rollout.<TestCohort>builder().percentage(50).build())
                 .enabled(true)
                 .build()
         );
@@ -68,7 +68,7 @@ public class ExperimentSpecification {
             hits += (experiment.isEnabledFor(COHORT) ? 1 : 0);
         }
 
-        assertEquals(25, hits, 5);
+        assertEquals(50, hits, 10);
     }
 
     @Test
