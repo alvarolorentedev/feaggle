@@ -15,7 +15,7 @@ public class Disk implements Sensor {
     private final FileStore fileStore;
 
     public static Predicate<Long> spaceAvailableIsLessThan(long size, Unit unit) {
-        return (state) -> state < (size * unit.conversion);
+        return (state) -> state <= (size * unit.conversion);
     }
 
     public static FileStore fileStoreOf(Path path) throws IOException {

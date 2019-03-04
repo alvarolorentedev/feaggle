@@ -9,24 +9,14 @@ import static java.lang.Runtime.getRuntime;
 
 @Builder
 public class Memory implements Sensor {
-    public static final class State {
-        public final long usage;
-        public final double percentage;
-
-        public State(long usage, double percentage) {
-            this.usage = usage;
-            this.percentage = percentage;
-        }
-    }
-
     private final Predicate<Long> predicate;
 
     public static Predicate<Long> usageIsGreaterThan(int memory, Unit unit) {
-        return usage -> usage > (memory * unit.conversion);
+        return usage -> usage >= (memory * unit.conversion);
     }
 
     public static Predicate<Long> usageIsGreaterThan(double percentage) {
-        return usage -> usedPercentage(usage) > percentage;
+        return usage -> usedPercentage(usage) >= percentage;
     }
 
     @Override
