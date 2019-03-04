@@ -11,7 +11,7 @@ public class Cpu implements Sensor {
     private final Predicate<Double> predicate;
 
     public static Predicate<Double> usageIsGreaterThan(double load) {
-        return currentLoad -> load >= currentLoad;
+        return currentLoad -> currentLoad >= load;
     }
 
     @Override
