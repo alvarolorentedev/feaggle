@@ -91,7 +91,7 @@ Experiment.<Cohort>builder()
     .build()
 ```
 
-You also might want to segment more your experiment, for example, only to half of your customers in Portugal.
+You also might want to segment more your cohort, for example, only to half of your customers in Portugal.
 
 ```java
 Experiment.<Cohort>builder()
@@ -102,7 +102,7 @@ Experiment.<Cohort>builder()
     .build()
 ```
 
-And also you might want to stick the segment, so a user that has been activated, is still activated in
+And also you might want to stick users to the experiment, so a user that has been activated, is still activated in
 future calls to the feature toggle.
 
 ```java
@@ -116,3 +116,9 @@ Experiment.<Cohort>builder()
 
 Stickiness depend on the hashCode of the identifier, so it needs to be consistent (usually the
 identifier hashCode is consistent across JVMs).
+
+For accessing a experiment toggle from a feaggle instance, you will need to use the `experiment` method.
+
+`feaggle.experiment(MY_EXPERIMENT).isEnabledFor(myCohortInstance)`
+
+## Operational Toggles
