@@ -61,6 +61,25 @@ public class ExperimentSpecification {
         assertEquals(25, hits, 5);
     }
 
+    @Test
+    public void rollOutShouldStickLoad() {
+        ExperimentToggle<TestCohort> experiment = toggleFor(Experiment.<TestCohort>builder()
+                .toggle(EXPERIMENT_NAME)
+                .segment(Rollout.<TestCohort>builder().sticky(true).percentage(25).build())
+                .enabled(true)
+                .build()
+        );
+
+        final int total = 100;
+        int hits = 0;
+
+        for (int i = 0; i < total; i++) {
+            hits += (experiment.isEnabledFor(COHORT) ? 1 : 0);
+        }
+
+        assertTrue(hits == 0 || hits == 100, "should not hit never or hit always");
+    }
+
     private ExperimentToggle<TestCohort> toggleFor(Experiment<TestCohort> experiment) {
         return Feaggle.load(new DriverLoader<TestCohort>() {
             @Override
