@@ -55,8 +55,8 @@ You can get the release toggle directly using the `release` method in feaggle.
 
 Experiment toggles require a ExperimentDriver, that will set up all experiments and cohorts for that experiment.
 A cohort is a subset of the target customers, and is defined by a POJO that implements the
-[ExperimentCohort interface](src/main/java/io/feaggle/toggle/experiment/ExperimentCohort.java). A Cohort is usually build with
-the user information that is needed for segmenting users, and it depends highly on the business context.
+[ExperimentCohort interface](src/main/java/io/feaggle/toggle/experiment/ExperimentCohort.java). A Cohort is usually built with
+the user information that is needed for segmenting users, and it depends on the business context.
 
 Good candidates for segmentation are:
 
