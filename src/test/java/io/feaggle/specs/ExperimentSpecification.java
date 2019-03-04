@@ -2,12 +2,11 @@ package io.feaggle.specs;
 
 import io.feaggle.DriverLoader;
 import io.feaggle.Feaggle;
+import io.feaggle.specs.cohort.TestCohort;
 import io.feaggle.toggle.ExperimentToggle;
 import io.feaggle.toggle.experiment.Experiment;
-import io.feaggle.toggle.experiment.ExperimentCohort;
 import io.feaggle.toggle.experiment.ExperimentDriver;
 import io.feaggle.toggle.experiment.segment.Rollout;
-import io.feaggle.toggle.experiment.segment.Segment;
 import io.feaggle.toggle.operational.OperationalDriver;
 import io.feaggle.toggle.release.ReleaseDriver;
 import org.junit.jupiter.api.Test;
@@ -110,18 +109,5 @@ public class ExperimentSpecification {
                 return null;
             }
         }).experiment(EXPERIMENT_NAME);
-    }
-}
-
-class TestCohort implements ExperimentCohort {
-    private final String identifier;
-
-    public TestCohort(String identifier) {
-        this.identifier = identifier;
-    }
-
-    @Override
-    public String identifier() {
-        return identifier;
     }
 }
