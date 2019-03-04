@@ -122,3 +122,37 @@ For accessing a experiment toggle from a feaggle instance, you will need to use 
 `feaggle.experiment(MY_EXPERIMENT).isEnabledFor(myCohortInstance)`
 
 ## Operational Toggles
+
+Operational toggles allow to enable features based on rules. Those rules use sensors to get operational
+information and decide the status of the toggle. Those sensors are categorised in:
+
+* [Cpu](src/main/java/io/feaggle/toggle/operational/sensor/Cpu.java) sensors.
+* [Disk](src/main/java/io/feaggle/toggle/operational/sensor/Disk.java) sensors.
+* [Memory](src/main/java/io/feaggle/toggle/operational/sensor/Memory.java) sensors.
+* [Healthchecks](src/main/java/io/feaggle/toggle/operational/sensor/Healthcheck.java).
+
+You usually build your rules in a [OperationalDriver](src/main/java/io/feaggle/toggle/operational/OperationalDriver.java)
+that will receive the rules that you want to define. An example would be:
+
+```java
+OperationalDriver.builder()
+.rule(
+    Rule.builder()
+        .toggle(TOGGLE_NAME)
+        .enabled(true)
+        .sensor(Healthcheck.builder()
+                .check(this::reportingServiceAvailability)
+                .interval(1000) // interval in milliseconds between calls
+                .healthyCount(1) // nr of times the healthcheck should be working for being considered healthy
+                .unhealthyCount(1) // nr of times the healthcheck should fail for being considered unhealthy
+                .build())
+        .build()
+).build()
+```
+
+As in Experiments, you can also add more than one sensor to a rule, enabling more complex rules (for example, enable
+reports if the report service is up and there is enough disk space).
+
+You can get the toggle from a feaggle instance calling the `operational` method.
+
+`feaggle.operational(TOGGLE_NAME).isEnabled()`
