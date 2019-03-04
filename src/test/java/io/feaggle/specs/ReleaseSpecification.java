@@ -3,14 +3,11 @@ package io.feaggle.specs;
 import io.feaggle.DriverLoader;
 import io.feaggle.Feaggle;
 import io.feaggle.specs.cohort.TestCohort;
-import io.feaggle.toggle.ExperimentToggle;
 import io.feaggle.toggle.ReleaseToggle;
-import io.feaggle.toggle.experiment.Experiment;
 import io.feaggle.toggle.experiment.ExperimentDriver;
 import io.feaggle.toggle.operational.OperationalDriver;
 import io.feaggle.toggle.release.BasicReleaseDriver;
 import io.feaggle.toggle.release.ReleaseDriver;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
