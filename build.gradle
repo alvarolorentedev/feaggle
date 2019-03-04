@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'io.feaggle'
+version '0.0.1'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation('org.projectlombok:lombok:1.18.6')
+    testImplementation('org.junit.jupiter:junit-jupiter:5.4.0')
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
