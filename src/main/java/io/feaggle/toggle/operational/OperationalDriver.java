@@ -30,15 +30,4 @@ public class OperationalDriver {
                 .map(Sensor::evaluate)
                 .reduce(true, (a, b) -> a && b)).isPresent();
     }
-
-    static {
-        OperationalDriver.builder()
-                .rule(Rule.builder()
-                        .toggle("pepe")
-                        .sensor(
-                                Cpu.builder().predicate(Cpu.usageIsMoreThan(80)).build()
-                        )
-                        .enabled(true)
-                        .build());
-    }
 }
