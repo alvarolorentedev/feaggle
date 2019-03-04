@@ -27,7 +27,6 @@ public class OperationalDriver {
 
         return maybeRule.filter(expectedRule -> Stream.of(expectedRule)
                 .flatMap(rule -> rule.sensors.stream())
-                .map(Sensor::evaluate)
-                .reduce(true, (a, b) -> a && b)).isPresent();
+                .allMatch(Sensor::evaluate)).isPresent();
     }
 }
