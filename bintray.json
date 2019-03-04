@@ -1,0 +1,35 @@
+{
+  "package": {
+    "name": "feaggle",
+    "repo": "feaggle",
+    "subject": "kmruiz",
+    "desc": "Feature toggle for the JVM.",
+    "website_url": "https://github.com/kmruiz/feaggle",
+    "issue_tracker_url": "https://github.com/kmruiz/feaggle/issues",
+    "vcs_url": "https://github.com/kmruiz/feaggle.git",
+    "licenses": ["MIT"],
+    "public_download_numbers": true,
+    "public_stats": true
+  },
+  "version": {
+    "name": "0.1.0",
+    "gpgSign": true
+  },
+  "files": [
+    {
+      "includePattern": "build/libs/(.*).jar",
+      "uploadPattern": "/io/feaggle/feaggle/0.1.0/$1.jar",
+      "matrixParams": {
+        "override": 1
+      }
+    },
+    {
+      "includePattern": "pom.xml",
+      "uploadPattern": "/io/feaggle/feaggle/0.1.0/feaggle-0.1.0.pom",
+      "matrixParams": {
+        "override": 1
+      }
+    }
+  ],
+  "publish": true
+}

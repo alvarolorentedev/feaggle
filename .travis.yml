@@ -13,3 +13,12 @@ cache:
 
 after_success:
   - ./gradlew jacocoTestReport coveralls
+
+deploy:
+  on:
+    tags: true
+  provider: bintray
+  file: "bintray.json"
+  user: "${BINTRAY_USER}"
+  key: "${BINTRAY_KEY}"
+  skip_cleanup: true
