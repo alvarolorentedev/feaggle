@@ -32,7 +32,6 @@ BasicReleaseDriver.builder()
 You can add more releases by calling the `release` method in the builder more than once.
 
 ```java
-```java
 BasicReleaseDriver.builder()
                 .release(RELEASE_NAME_1, true)
                 .release(RELEASE_NAME_2, false)
