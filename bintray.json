@@ -24,7 +24,7 @@
       }
     },
     {
-      "includePattern": "pom.xml",
+      "includePattern": "build/poms/pom-default.xml",
       "uploadPattern": "/io/feaggle/feaggle/0.1.0/feaggle-0.1.0.pom",
       "matrixParams": {
         "override": 1
