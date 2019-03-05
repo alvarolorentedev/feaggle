@@ -13,6 +13,7 @@ cache:
 
 after_success:
   - ./gradlew jacocoTestReport coveralls
+  - ./gradlew install
 
 deploy:
   on:
