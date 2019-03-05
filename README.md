@@ -1,6 +1,7 @@
 feaggle
 [![Build Status](https://travis-ci.org/kmruiz/feaggle.svg?branch=master)](https://travis-ci.org/kmruiz/feaggle)
 [![Coverage Status](https://coveralls.io/repos/github/kmruiz/feaggle/badge.svg?branch=master)](https://coveralls.io/github/kmruiz/feaggle?branch=master)
+[![Download](https://api.bintray.com/packages/kmruiz/maven/feaggle/images/download.svg)](https://bintray.com/kmruiz/maven/feaggle/_latestVersion)
 =============================================
 
 *feaggle* is a feature toggle library that aims to be comfortable and versatile, in a way that
