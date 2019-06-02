@@ -17,6 +17,25 @@ defined from one to several segments.
 * *Operational Toggles*: Supports changing the behaviour of an application depending on the outcome of
 different sensors.
 
+## Gradle Dependency
+
+You will need to use jcenter as a repository:
+
+```groovy
+repositories {
+    //... 
+    jcenter()
+    //...
+}
+```
+
+And the dependency:
+
+```groovy
+compile "io.feaggle:feaggle:1.0.1"
+```
+
+
 ## Getting a feaggle instance
 
 `feaggle` needs a [DriverLoader](src/main/java/io/feaggle/DriverLoader.java) (which is an interface) that will set up all the required drivers for the correct
