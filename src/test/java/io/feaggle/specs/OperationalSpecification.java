@@ -12,6 +12,7 @@ import io.feaggle.infrastructure.Unit;
 import io.feaggle.specs.cohort.TestCohort;
 import io.feaggle.toggle.OperationalToggle;
 import io.feaggle.toggle.experiment.ExperimentDriver;
+import io.feaggle.toggle.operational.BasicOperationalDriver;
 import io.feaggle.toggle.operational.OperationalDriver;
 import io.feaggle.toggle.operational.Rule;
 import io.feaggle.toggle.operational.sensor.Cpu;
@@ -109,7 +110,7 @@ public class OperationalSpecification {
 
             @Override
             public OperationalDriver loadOperationalDriver() {
-                return OperationalDriver.builder()
+                return BasicOperationalDriver.builder()
                         .rule(rule)
                         .build();
             }

@@ -10,6 +10,7 @@ import io.feaggle.DriverLoader;
 import io.feaggle.Feaggle;
 import io.feaggle.specs.cohort.TestCohort;
 import io.feaggle.toggle.ExperimentToggle;
+import io.feaggle.toggle.experiment.BasicExperimentDriver;
 import io.feaggle.toggle.experiment.Experiment;
 import io.feaggle.toggle.experiment.ExperimentDriver;
 import io.feaggle.toggle.experiment.segment.Rollout;
@@ -100,7 +101,7 @@ public class ExperimentSpecification {
         return Feaggle.load(new DriverLoader<TestCohort>() {
             @Override
             public ExperimentDriver<TestCohort> loadExperimentDriver() {
-                return ExperimentDriver.<TestCohort>builder()
+                return BasicExperimentDriver.<TestCohort>builder()
                         .experiment(experiment)
                         .build();
             }
