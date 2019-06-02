@@ -12,20 +12,20 @@
     "public_stats": true
   },
   "version": {
-    "name": "0.1.0",
+    "name": "1.0.1",
     "gpgSign": true
   },
   "files": [
     {
       "includePattern": "build/libs/(.*).jar",
-      "uploadPattern": "/io/feaggle/feaggle/1.0.0/$1.jar",
+      "uploadPattern": "/io/feaggle/feaggle/1.0.1/$1.jar",
       "matrixParams": {
         "override": 1
       }
     },
     {
       "includePattern": "build/poms/pom-default.xml",
-      "uploadPattern": "/io/feaggle/feaggle/1.0.0/feaggle-1.0.0.pom",
+      "uploadPattern": "/io/feaggle/feaggle/1.0.1/feaggle-1.0.1.pom",
       "matrixParams": {
         "override": 1
       }
