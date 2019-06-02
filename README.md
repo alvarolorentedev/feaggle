@@ -26,6 +26,50 @@ Usually you would create your own DriverLoader, that will build all needed drive
 a good extension point and would allow you to implement your own extensions for `feaggle`, like reading the configuration
 from a file or from an external service.
 
+An example DriverLoader:
+
+```java
+return Feaggle.load(new DriverLoader<Cohort>() {
+            @Override
+            public ExperimentDriver<Cohort> loadExperimentDriver() {
+                return BasicExperimentDriver.<Cohort>builder()
+                        .experiment(
+                            Experiment.<Cohort>builder()
+                                .toggle(MY_EXPERIMENT)
+                                .segment(cohort -> cohort.countryCode == "P")
+                                .segment(Rollout.<Cohort>builder().percentage(50).sticky(true).build())
+                                .enabled(true)
+                                .build()
+                        )
+                        .build();
+            }
+
+            @Override
+            public OperationalDriver loadOperationalDriver() {
+                return OperationalDriver.builder()
+                       .rule(
+                           Rule.builder()
+                               .toggle(TOGGLE_NAME)
+                               .enabled(true)
+                               .sensor(Healthcheck.builder()
+                                       .check(this::reportingServiceAvailability)
+                                       .interval(1000) // interval in milliseconds between calls
+                                       .healthyCount(1) // nr of times the healthcheck should be working for being considered healthy
+                                       .unhealthyCount(1) // nr of times the healthcheck should fail for being considered unhealthy
+                                       .build())
+                               .build()
+                       ).build();
+            }
+
+            @Override
+            public ReleaseDriver loadReleaseDriver() {
+                return BasicReleaseDriver.builder()
+                           .release(RELEASE_NAME, true)
+                           .build();
+            }
+        });
+```
+
 ## Release Toggles
 
 Release toggles depend on a ReleaseDriver, that will hold the information of each release and will update
@@ -36,8 +80,8 @@ declare feature toggles using a builder. An example would be:
 
 ```java
 BasicReleaseDriver.builder()
-                .release(RELEASE_NAME, true)
-                .build()
+    .release(RELEASE_NAME, true)
+    .build()
 ```
 
 You can add more releases by calling the `release` method in the builder more than once.
