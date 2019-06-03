@@ -6,6 +6,7 @@
  */
 package io.feaggle;
 
+import io.feaggle.epic.Epic;
 import io.feaggle.toggle.*;
 import io.feaggle.toggle.experiment.ExperimentCohort;
 import io.feaggle.toggle.experiment.ExperimentDriver;
@@ -45,5 +46,9 @@ public class Feaggle<Cohort extends ExperimentCohort> {
         BasicExperimentToggle<Cohort> toggle = new BasicExperimentToggle<>(name);
         toggle.drive(experimentDriver);
         return toggle;
+    }
+
+    public Epic.EpicBuilder<Cohort> epic() {
+        return Epic.builder();
     }
 }
