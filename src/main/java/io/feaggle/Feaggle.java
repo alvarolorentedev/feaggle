@@ -6,9 +6,7 @@
  */
 package io.feaggle;
 
-import io.feaggle.toggle.ExperimentToggle;
-import io.feaggle.toggle.OperationalToggle;
-import io.feaggle.toggle.ReleaseToggle;
+import io.feaggle.toggle.*;
 import io.feaggle.toggle.experiment.ExperimentCohort;
 import io.feaggle.toggle.experiment.ExperimentDriver;
 import io.feaggle.toggle.operational.OperationalDriver;
@@ -32,19 +30,19 @@ public class Feaggle<Cohort extends ExperimentCohort> {
     }
 
     public ReleaseToggle release(String name) {
-        ReleaseToggle toggle = new ReleaseToggle(name, new AtomicBoolean(false));
+        BasicReleaseToggle toggle = new BasicReleaseToggle(name, new AtomicBoolean(false));
         toggle.drive(releaseDriver);
         return toggle;
     }
 
     public OperationalToggle operational(String name) {
-        OperationalToggle toggle = new OperationalToggle(name, new AtomicBoolean(false));
+        BasicOperationalToggle toggle = new BasicOperationalToggle(name, new AtomicBoolean(false));
         toggle.drive(operationalDriver);
         return toggle;
     }
 
     public ExperimentToggle<Cohort> experiment(String name) {
-        ExperimentToggle<Cohort> toggle = new ExperimentToggle<>(name);
+        BasicExperimentToggle<Cohort> toggle = new BasicExperimentToggle<>(name);
         toggle.drive(experimentDriver);
         return toggle;
     }

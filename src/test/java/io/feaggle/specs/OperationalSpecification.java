@@ -33,15 +33,6 @@ public class OperationalSpecification {
     private static final String TOGGLE_NAME = "toggle";
 
     @Test
-    public void shouldRetrieveToggleName() {
-        OperationalToggle toggle = toggleFor(Rule.builder()
-                .toggle(TOGGLE_NAME)
-                .build());
-
-        assertEquals(TOGGLE_NAME, toggle.identifier());
-    }
-
-    @Test
     public void shouldApplyRuleWhenEnabledAndCpuSensorsEvaluate() {
         OperationalToggle toggle = toggleFor(Rule.builder()
                 .toggle(TOGGLE_NAME)

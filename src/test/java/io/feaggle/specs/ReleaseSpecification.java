@@ -22,16 +22,6 @@ public class ReleaseSpecification {
     private static final String RELEASE_NAME = "release";
 
     @Test
-    public void shouldRetrieveTheToggleName() {
-        ReleaseToggle toggle = toggleFor(BasicReleaseDriver.builder()
-                .release(RELEASE_NAME, true)
-                .build()
-        );
-
-        assertEquals(RELEASE_NAME, toggle.identifier());
-    }
-
-    @Test
     public void shouldBeEnabledWithTheRelease() {
         ReleaseToggle toggle = toggleFor(BasicReleaseDriver.builder()
                 .release(RELEASE_NAME, true)
