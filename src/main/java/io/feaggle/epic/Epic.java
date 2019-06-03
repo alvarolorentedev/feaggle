@@ -34,6 +34,6 @@ public class Epic<Cohort extends ExperimentCohort> {
         return Stream.concat(
                 releaseStatus,
                 Stream.concat(experimentStatus, operationalStatus)
-        ).allMatch(e -> e == true);
+        ).allMatch(e -> e);
     }
 }
