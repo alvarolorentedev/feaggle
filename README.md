@@ -32,7 +32,7 @@ repositories {
 And the dependency:
 
 ```groovy
-compile "io.feaggle:feaggle:1.0.1"
+compile "io.feaggle:feaggle:2.0.0"
 ```
 
 
@@ -48,10 +48,13 @@ from a file or from an external service.
 An example DriverLoader:
 
 ```java
-return Feaggle.load(new DriverLoader<Cohort>() {
-            @Override
-            public ExperimentDriver<Cohort> loadExperimentDriver() {
-                return BasicExperimentDriver.<Cohort>builder()
+Feaggle<ExperimentCohort> feaggle = Feaggle.load(
+    BasicDriverLoader.builder()
+            .releases(BasicReleaseDriver.builder()
+                     .release(RELEASE_NAME, true)
+                     .build();)
+            .experiments(
+                    BasicExperimentDriver.<Cohort>builder()
                         .experiment(
                             Experiment.<Cohort>builder()
                                 .toggle(MY_EXPERIMENT)
@@ -60,33 +63,23 @@ return Feaggle.load(new DriverLoader<Cohort>() {
                                 .enabled(true)
                                 .build()
                         )
-                        .build();
-            }
-
-            @Override
-            public OperationalDriver loadOperationalDriver() {
-                return OperationalDriver.builder()
-                       .rule(
-                           Rule.builder()
-                               .toggle(TOGGLE_NAME)
-                               .enabled(true)
-                               .sensor(Healthcheck.builder()
-                                       .check(this::reportingServiceAvailability)
-                                       .interval(1000) // interval in milliseconds between calls
-                                       .healthyCount(1) // nr of times the healthcheck should be working for being considered healthy
-                                       .unhealthyCount(1) // nr of times the healthcheck should fail for being considered unhealthy
-                                       .build())
-                               .build()
-                       ).build();
-            }
-
-            @Override
-            public ReleaseDriver loadReleaseDriver() {
-                return BasicReleaseDriver.builder()
-                           .release(RELEASE_NAME, true)
-                           .build();
-            }
-        });
+                        .build()
+            )
+            .operationals(OperationalDriver.builder()
+                     .rule(
+                         Rule.builder()
+                             .toggle(TOGGLE_NAME)
+                             .enabled(true)
+                             .sensor(Healthcheck.builder()
+                                     .check(this::reportingServiceAvailability)
+                                     .interval(1000) // interval in milliseconds between calls
+                                     .healthyCount(1) // nr of times the healthcheck should be working for being considered healthy
+                                     .unhealthyCount(1) // nr of times the healthcheck should fail for being considered unhealthy
+                                     .build())
+                             .build()
+                     ).build())
+            .build()
+        );
 ```
 
 ## Release Toggles
