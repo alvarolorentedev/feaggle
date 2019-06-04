@@ -52,7 +52,7 @@ Feaggle<ExperimentCohort> feaggle = Feaggle.load(
     BasicDriverLoader.builder()
             .releases(BasicReleaseDriver.builder()
                      .release(RELEASE_NAME, true)
-                     .build();)
+                     .build())
             .experiments(
                     BasicExperimentDriver.<Cohort>builder()
                         .experiment(
